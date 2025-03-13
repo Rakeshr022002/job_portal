@@ -1,0 +1,130 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.overall{
+    min-height: 100vh;
+    background-color: #130f40;
+    background-image: linear-gradient(315deg, #130f40 0%, #000000 74%);
+    padding: 10px 20px 10px 20px;
+}
+h1{
+    color: white;
+}
+form{
+    min-height: 85vh;
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+    gap: 10px;
+    overflow: hidden;
+}
+.ins-img-box{
+    min-height: 85vh;
+    width: 25%;
+    border-right: 5px double navy;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.institute-img{
+    height: 250px;
+    width: 250px;
+    border-radius:20px;
+    border: 2px solid black;
+    overflow: hidden;
+    background-image: url(/static/images/default_user.png);
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(128, 128, 128, 0.459);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.institute-img img{
+    height: 250px;
+    width: 100%;
+}
+.upload-btn{
+    display: block;
+    width: 150px;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    padding: 8px;
+    margin: 10px auto;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: sans-serif;
+}
+
+.ins-profile-input {
+    display: none;
+}
+.ins-info-box{
+    min-height: 85vh;
+    width: 75%;
+    padding: 10px ;
+    display: flex;
+    gap: 20px;
+    /* border: 2px solid black; */
+}
+table,tr,td{
+    /* border: 2px solid black; */
+    border-collapse: collapse;
+}
+td{
+    height: 53px;
+    width: 300px;
+}
+input{
+    height: 40px;
+    width: 300px;
+    outline: none;
+    border:2px solid navy;
+    border-radius: 5px;
+    padding-left: 5px;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+textarea{
+    min-height: 100px;
+    width: 100%;
+    border: 2px solid navy;
+    resize: none;
+    padding: 10px;
+    outline: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: 600;
+}
+.table-2 td{
+    width: 250px;
+}
+.btn-box{
+    text-align: center;
+}
+.btn{
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+.back-btn{
+    background-color: red;
+}
+.submit-btn{
+    background-color: blue;
+}

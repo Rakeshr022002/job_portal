@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <title>Document</title>
+    <style>
+        h1{
+            color: white;
+        }
+    .nav-content {
+    width: 600px ;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: red; */
+
+}
+
+.nav-link {
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* background-color: blue; */
+}
+    </style>
+</head>
+
+<body>
+    <div class="overall">
+        <nav>
+            <div class="head-name">
+                <h1>Job Portal</h1>
+            </div>
+            <div class="nav-content">
+                <div class="nav-link">
+                    {% if user.is_staff == 0 %}
+                    <a href="{% url 'applied_job' %}">Applied Jobs</a>
+                    <a href="{% url 'job_list' %}">Job List</a>
+                    <a href="{% url 'post_job' %}">Post Job</a>
+                    {% endif %}
+                    {% if user.is_staff == 1 %}
+                    <a href="{% url 'hired_job_view' %}">Hired Jobs</a>
+                    {% endif %}
+                    <a href="">About</a>
+                    <a href="">Contact</a>
+                    <a href="{% url 'logout_user' %}">Logout</a>
+                </div>
+                {% if user.is_staff == 1 %}
+                <a href="{% url 'staff_view' %}">
+
+                    <div class="user-profile">
+                        {% for staff in all_post %}
+                        <img src="{{staff.Staff_img }}" alt="">
+                        {% endfor %}
+                    </div>
+                </a>
+                {% else %}
+
+                <div class="ins-profile">
+                    {% for ins in institute %}
+                    <img src="{{ins.institute_img }}" alt="">
+                    {% endfor %}
+                </div>
+
+                {% endif %}
+            </div>
+        </nav>
+        {% for msg in messages %}        
+        <div class="msg-box" id="hidebox">
+            <h3>{{ msg }}</h3>
+            <h3 class="close-btn" onclick="hidebtn()"><i class="fa-solid fa-xmark"></i></h3>
+        </div>
+        {% endfor %}
+
+        <div class="details-box">
+            {% if user.is_staff == 1 %}
+            <center>
+                <h1>Let's Find Your Job Now!</h1>
+            </center>
+            <br>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" class="search-input" placeholder="Search Qulification..." name="qulification">&nbsp;&nbsp;
+                <input type="text" class="search-input" placeholder="Search jobrole..." name="role">&nbsp;&nbsp;
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+            <br>
+            <div class="detail-overall-box">
+                {% for institute in all_institute_list %}
+                <div class="ins-detail-box">
+                    <div class="ins-img-box">
+                        <div class="img-box ins-img">
+                            <img src="{{ institute.institute_img }}">
+                        </div>
+                        <button class="job-type">{{institute.job_type}}</button>
+                        <a href="{% url 'institute_overview' institute.id %}"><button
+                                class="Apply-btn">Apply</button></a>
+                    </div>
+                    <h4 style="text-align: center;">{{institute.name |truncatechars:19}}</h4>
+                    <table class="ins-table">
+                        <tbody>
+                            <tr>
+                                <td>Website</td>
+                                <td>:</td>
+                                <td><a href="{{institute.website}}">viste site</a></td>
+                            </tr>
+                            <tr>
+                                <td>Job Role</td>
+                                <td>:</td>
+                                <td>{{institute.job_role |truncatechars:19}}</td>
+                            </tr>
+                            <tr>
+                                <td>Salary</td>
+                                <td>:</td>
+                                <td>{{institute.salary |truncatechars:19}}</td>
+                            </tr>
+                            <tr>
+                                <td>Num of position</td>
+                                <td>:</td>
+                                <td>{{institute.number_of_position |truncatechars:19}}</td>
+                            </tr>
+                            <tr>
+                                <td>Qulification</td>
+                                <td>:</td>
+                                <td>{{institute.qulification |truncatechars:19}}</td>
+                            </tr>
+                            <tr>
+                                <td>Experience</td>
+                                <td>:</td>
+                                <td>{{institute.experience |truncatechars:19}}</td>
+                            </tr>
+                            <tr>
+                                <td>Job Description</td>
+                                <td>:</td>
+                                <td>{{institute.job_description |truncatechars:19}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- ---------------------------------staff page------------------------------------------------- -->
+
+            <div>
+                {% if user.is_staff == 0 %}
+                <center>
+                    <h1>Let's Hire Your Lecture Now!</h1>
+                </center>
+                <br>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="text" class="search-input" placeholder="Search education..."
+                        name="education">&nbsp;&nbsp;
+                    <input type="text" class="search-input" placeholder="Search jobrole..." name="jobrole">&nbsp;&nbsp;
+                    <button type="submit" class="search-btn">Search</button>
+                </form>
+                <br>
+                <div class="detail-overall-box">
+                    {% for staff in all_staff_details %}
+                    <div class="user-details-box">
+                        <div class="upper-box">
+                            <div class="img-box">
+                                <img src="{{staff.Staff_img}}">
+                            </div>
+                            <a href="{% url 'staff_overview' staff.id %}"><button class="hire-btn">Hire</button></a>
+                        </div>
+                        <table class="user-info-table">
+                            <tr>
+                                <td>Name</td>
+                                <td>:</td>
+                                <td>{{staff.name}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>:</td>
+                                <td>{{staff.email |truncatechars:19}}</td>
+                            </tr>
+                            <tr>
+                                <td>Education</td>
+                                <td>:</td>
+                                <td>{{staff.Education |truncatechars:19}}</td>
+                            </tr>
+                            <tr>
+                                <td>Search Role</td>
+                                <td>:</td>
+                                <td>{{staff.search_role}}</td>
+                            </tr>
+                            <tr>
+                                <td>Experience</td>
+                                <td>:</td>
+                                <td>{{staff.experience |truncatechars:19}}</td>
+                            </tr>
+                            <tr>
+                                <td>Remot to work</td>
+                                <td>:</td>
+                                <td>{{staff.remote}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/close_btn.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/applied_staff_overview.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        .overall{
+            padding: 8px 20px 20px 20px;
+        }
+        a{
+            color: white;
+            font-size: 20px;
+        }
+        h1{
+            color: white;
+        }
+        table{
+            min-height: 550px;
+            width: 100%;
+            background-color: white;
+            border-collapse:collapse ;
+            font-weight: 600;
+            border-radius: 20px;
+            position: relative;
+        }
+        /* td{
+            border: 2px solid black;
+        } */
+        tr td:first-child{
+            width: 15%;
+            padding-left: 20px;
+        }
+        tr td:nth-child(2){
+            width: 2%;
+            text-align: center;
+        }
+        tr td:last-child{
+            padding-left: 10px;
+        }
+        button{
+            height: 40px;
+            width: 150px;
+            background-color:indigo;
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        tr:last-child{
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="overall">
+        <a href="{% url 'applied_job' %}"><i class="fa-solid fa-arrow-left"></i></a>
+        {% for item in data %}
+        <center><h1>Staff Information</h1></center>
+       <table>
+        <tr>
+            <td>Name</td>
+            <td>:</td>
+            <td>{{item.fullname}}</td>
+        </tr>
+        <tr>
+            <td>Email Address</td>
+            <td>:</td>
+            <td><a href="{{item.email}}" style="color: blue;font-size: 16px;" >{{item.email}}</a></td>
+        </tr>
+        <tr>
+            <td>Phone Number</td>
+            <td>:</td>
+            <td>{{item.phone_no}}</td>
+        </tr>
+        <tr>
+            <td>Date of Birth</td>
+            <td>:</td>
+            <td>{{item.dob}}</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>:</td>
+            <td>{{item.gender}}</td>
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>:</td>
+            <td>{{item.address}}</td>
+        </tr>
+        <tr>
+            <td>Education</td>
+            <td>:</td>
+            <td>{{item.Education}}</td>
+        </tr>
+        <tr>
+            <td>Applied Job Role</td>
+            <td>:</td>
+            <td style="color: red;">{{item.job_role}}</td>
+        </tr>        <tr>
+            <td>Experience</td>
+            <td>:</td>
+            <td>{{item.experience}}</td>
+        </tr>
+        <tr>
+            <td>Resume</td>
+            <td>:</td>
+            <td>{{item.resume}} &nbsp;&nbsp;&nbsp;&nbsp;<button>Download Resume</button></td>
+        </tr>
+       </table>
+       {% endfor %}
+    </div>
+</body>
+</html>

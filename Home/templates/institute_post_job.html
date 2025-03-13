@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/institute_post_job.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="overall">
+        <center>
+            <h1>POST YOUR JOBS</h1>
+        </center>
+        <br>
+        <form method="POST" enctype="multipart/form-data" autocomplete="off">
+            {% csrf_token %}
+            <div class="ins-img-box">
+                <div class="institute-img"><img src="{{ data.institute_img.url }}" id="ins-pic"></div>
+                <label for="ins-file" class="upload-btn">Upload Institute Image</label>
+                <input type="file" id="ins-file" accept="image/jpeg, image/png, image/jpg" class="ins-profile-input" name="ins-img">
+            </div>
+            <div class="ins-info-box">
+                <table>
+                    <tr>
+                        <td>
+                            <h4>Institute Name </h4>
+                        </td>
+                        <td><input type="text" name="ins-name" placeholder="Enter Institution Name..." value="{{data.name}}" required></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Email</h4>
+                        </td>
+                        <td><input type="email" name="ins-email" placeholder="Enter Institution Email..." value="{{data.email}}" required></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Institute website</h4>
+                        </td>
+                        <td><input type="text" name="ins-website" placeholder="Post Institution Website Link..." value="{{data.website}}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Department</h4>
+                        </td>
+                        <td><input type="text" name="ins-dept" placeholder="Enter Dept like cse,lab Assistent..." value="{{data.department}}" required></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Job Title</h4>
+                        </td>
+                        <td><input type="text" name="ins-job-role" placeholder="Enter Job Role..." value="{{data.job_role}}" required></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Job Type</h4>
+                        </td>
+                        <td><input type="text" name="ins-job-type" placeholder="Full Time / Part Time..." value="{{data.job_type}}" required></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Salary</h4>
+                        </td>
+                        <td><input type="text" name="ins-salary" placeholder="Enter salary..." value="{{data.salary}}" required></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Number of position</h4>
+                        </td>
+                        <td><input type="number" name="ins-position" placeholder="Number of positions..." value="{{data.number_of_position}}" required></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Qulification</h4>
+                        </td>
+                        <td><input type="text" name="ins-qulification" placeholder="M.Tech , B.Tech or others..." value="{{data.qulification}}" required>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Experience</h4>
+                        </td>
+                        <td><input type="text" name="ins-experience" placeholder="Enter Experience..." value="{{data.experience}}" required></td>
+                    </tr>
+                </table>
+                <table class="table-2">
+                    <tr>
+                        <td>
+                            <h4>Job Description </h4>
+                        </td>
+                        <td><textarea name="ins-description" placeholder="Enter your job description..."  required>{{data.job_description}}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Address</h4>
+                        </td>
+                        <td><textarea name="ins-address" placeholder="Enter Institute Address..."  required>{{data.address}}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Last Apply Date</h4>
+                        </td>
+                        <td><input type="date" name="ins-date" placeholder="Last Apply Date..." value="{{data.last_apply_data}}"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Interview Mode</h4>
+                        </td>
+                        <td><input type="text" name="ins-interview" placeholder="Online or Offline..." value="{{data.interview_mode}}" required></td>
+                    </tr>
+                    <tr class="btn-box">
+                        <td></td>
+                        <td><a href=""><button class="btn submit-btn">Submit</button></a></td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let institute_Pic = document.getElementById("ins-pic")
+        let institute_file = document.getElementById("ins-file")
+
+        institute_file.onchange = function () {
+            institute_Pic.src = URL.createObjectURL(institute_file.files[0]);
+        }
+    </script>
+    
+</body>
+
+</html>

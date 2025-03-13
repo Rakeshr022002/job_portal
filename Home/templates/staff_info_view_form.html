@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/staff_info_view_form.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="overall">
+        <a href="{% url 'home_page' %}" class="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+        <div class="box">
+            {% if all_post %}
+            {% for staff in all_post %} 
+            <div class="user-profile-box">
+                <img src="{{staff.Staff_img }}" alt="" class="user-image">
+                <a href="{% url 'delete_staff' staff.id  %}"><button class="btn del-btn">Delete Profile</button></a>
+                <a href="{% url 'update_staff' staff.id  %}"><button class="btn update-btn">Update Profile</button></a>
+            </div>
+            <div class="user-info-box"> 
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td>:</td>
+                            <td>{{staff.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>:</td>
+                            <td>{{staff.email}}</td>
+                        </tr>
+                        <tr>
+                            <td>Mobile No</td>
+                            <td>:</td>
+                            <td>{{staff.mobile_no}}</td>
+                        </tr>
+                        <tr>
+                            <td>Date of Birth</td>
+                            <td>:</td>
+                            <td>{{staff.date_of_birth}}</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>:</td>
+                            <td>{{staff.gender}}</td>
+                        </tr>
+                        <tr>
+                            <td>Education</td>
+                            <td>:</td>
+                            <td>{{staff.Education}}</td>
+                        </tr>
+                        <tr>
+                            <td>Country</td>
+                            <td>:</td>
+                            <td>{{staff.country}}</td>
+                        </tr>
+                        <tr>
+                            <td>State</td>
+                            <td>:</td>
+                            <td>{{staff.state}}</td>
+                        </tr>
+                        <tr>
+                            <td>Experience</td>
+                            <td>:</td>
+                            <td>{{staff.experience}}</td>
+                        </tr>
+                        <tr>
+                            <td>Search Role</td>
+                            <td>:</td>
+                            <td>{{staff.search_role}}</td>
+                        </tr>
+                        <tr>
+                            <td>Remote to work</td>
+                            <td>:</td>
+                            <td>{{staff.remote}}</td>
+                        </tr>   
+                    </table>
+                   {% endfor %}   
+            </div> 
+            {% else %}
+            <div class="upload-box">
+            <h1>Upload Details</h1>
+            <a href="{% url 'staff_info' %}"><button class="upload-btn">upload &nbsp;<i class="fa-solid fa-upload"></i></button></a>
+        </div>
+          {% endif %}
+        </div>
+    </div>
+</body>
+</html>

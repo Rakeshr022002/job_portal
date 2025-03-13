@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/hire_mail.css' %}">
+    <title>Document</title>
+    <style>
+        form{
+            padding: 20px;
+            min-height: 700px;
+        }
+        table{
+            height: 700px;
+            width: 100%;
+            min-height:450px;
+            border-collapse:collapse ;
+            font-weight: 600;
+            /* border: 2px solid black; */
+        }
+        tr td:first-child{
+            width: 20%;
+        }
+        input{
+            height: 40px;
+            width: 100%;
+            font-size: 15px;
+            font-weight: bold;
+            border: 2px solid navy;
+            padding-left: 10px;
+            border-radius: 5px;
+        }
+        textarea{
+            width: 100%;
+            height: 150px;
+            border: 2px solid navy;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            outline: none;
+            resize: none;
+        }
+        .address-textarea{
+            height: 80px;
+        }
+        .checkbox{
+            height: 15px;
+            width: 15px;
+        }
+        tr:last-child td:first-child{
+            /* background-color: red; */
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        p{
+            font-size: 12px;
+        }
+        .role-input{
+            border: none;
+        }
+        button{
+            height: 40px;
+            width: 100px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="overall">
+        <center><h1>Hire Form</h1></center>
+        <br>
+        <br>
+        <form method="POST">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Institute Name</td>
+                    <td>:</td>
+                    <td><input type="text" placeholder="Enter Your Institution Name..." name='ins-name' required></td>
+                </tr>
+                <tr>
+                    <td>Email Address</td>
+                    <td>:</td>
+                    <td><input type="email" placeholder="Enter Your Email Address..." name='ins-email' required></td>
+                </tr>
+                <tr>
+                    <td>Mobile Number</td>
+                    <td>:</td>
+                    <td><input type="number" placeholder="Enter Your Mobile Number..." name='ins-phone' required></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>:</td>
+                    <td><textarea class="address-textarea" name="ins-address" placeholder="Enter Your Address..." required></textarea></td>
+                </tr>
+                {% for staff in data %}
+                <tr>
+                    <td>Hire Role</td>
+                    <td>:</td>
+                    <td><input type="text" value="{{staff.search_role}}" class="role-input" name='hire-role' required></td>
+                </tr>
+                <tr>
+                    <td>Salary</td>
+                    <td>:</td>
+                    <td><input type="text" placeholder="Enter Your Salary..."  name='ins-salary' required></td>
+                </tr>
+                <tr>
+                    <td>Subject</td>
+                    <td>:</td>
+                    <td><textarea  placeholder="Enter Your Subject Here..." name='ins-subject' required></textarea></td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" class="checkbox" value="{{staff.staff_reference.id}}" name='staff_ref' required>&nbsp;&nbsp;<p>I agree Terms and Conditions</p></td> 
+                </tr>
+                {% endfor %}
+            </table>
+            <center><a href=""><button>Hire</button></a></center>
+        </form>
+    </div>
+</body>
+</html>

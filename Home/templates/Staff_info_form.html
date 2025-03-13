@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/institute_info_form.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="overall">
+        <nav>
+            <a href="{% url 'staff_view' %}">Back</a>
+        </nav>
+        <form method="POST" enctype="multipart/form-data" autocomplete="off">
+            {% csrf_token %}
+            <div class="user-profile-box">
+                <div class="user-img">
+                    <img src="{{data.Staff_img.url}}" id="profile-pic">
+                </div>
+                <label class="uploadd-btn" for="input-file">Upload Image</label>
+                <input type="file" accept="image/jpeg, image/png, image/jpg" id="input-file" class="user-profile-input"
+                    name="staff-img">
+            </div>
+            <div class="user-info-box">
+                <div class="box-1">
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter Your Name.." name="name" value="{{data.name}}">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="Enter Your Email Address..." name="email" value="{{data.email}}">
+                    <label>Mobile Number</label>
+                    <input type="number" placeholder="Enter Your Mobile Number..." name="mobileno"
+                        value="{{data.mobile_no}}">
+                    <label>Education</label>
+                    <input type="text" placeholder="Enter Your Education..." name="education"
+                        value="{{data.Education}}">
+                    <label>Gender</label>
+                    <div class="gender-box">
+                        <input type="radio" value="{{ data.gender|default:'Male' }}" name="gender" required>
+                        <h4>Male</h4>
+                        <input type="radio" value="Female" name="gender" required>
+                        <h4>Female</h4>
+                        <input type="radio" value="Others" name="gender" required>
+                        <h4>Others</h4>
+                    </div>
+                    <div class="country-box">
+                        <div>
+                            <label>Country</label>&nbsp;
+                            <select name="country">
+                                <option value="India">India</option>
+                                <option value="Usa">USA</option>
+                                <option value="Uk">UK</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>State/Region</label>&nbsp;
+                            <select name="state">
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="kerala">Kerala</option>
+                                <option value="Washington">Washington</option>
+                                <option value="california">california</option>
+                                <option value="England">England</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-2">
+                    <label>Date of Birth</label>
+                    <input type="date" name="dateofbirth" value="{{ data.date_of_birth }}">
+                    <label>Search Job Role Name</label>
+                    <input type="text" name="jobrole" placeholder="Enter Job role..." value="{{data.search_role}}">
+                    <label>Work Experience</label>
+                    <textarea name="experience" id=""
+                        placeholder="Enter Your Work Experience...">{{data.experience}}</textarea>
+                    <label>Remote To Work</label>
+                    <div class="role-box">
+                        <input type="radio" value="Yes" name="remote" required>
+                        <h4>Yes</h4>
+                        <input type="radio" value="No" name="remote" required>
+                        <h4>No</h4>
+                    </div>
+                    <center><a href="{% url 'staff_view' %}"><button type="submit" class="save-btn">Save</button></a>
+                    </center>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="{% static 'js/upload_img.js' %}"></script>
+</body>
+
+</html>

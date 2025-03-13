@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/institute_overview.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="overall">
+        <a href="/home" style="color: white;">Back</a>
+        <br><br>
+        <div class="display-box">
+            {% for item in data %}
+            <div class="img-box">
+                <img src="{{item.institute_img.url}}" >
+            </div>
+            <br><br>
+            <center><h2>{{item.name |upper}}</h2></center>
+            <br>
+            <table>
+                <tr>
+                    <td>Institute Email</td>
+                    <td>:</td>
+                    <td><a href="https://mail.google.com" style="color: blue;">{{item.email}}</a></td>
+                </tr>
+                <tr>
+                    <td>Web site link</td>
+                    <td>:</td>
+                    <td><a href="{{item.website}}">visit website</a></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>:</td>
+                    <td>{{item.address}}</td>
+                </tr>
+                <tr>
+                    <td>Job Department</td>
+                    <td>:</td>
+                    <td>{{item.department}}</td>
+                </tr>
+                <tr>
+                    <td>Job Role</td>
+                    <td>:</td>
+                    <td>{{item.job_role}}</td>
+                </tr>
+                <tr>
+                    <td>Job Type</td>
+                    <td>:</td>
+                    <td>{{item.job_type}}</td>
+                </tr>
+                <tr>
+                    <td>Job description</td>
+                    <td>:</td>
+                    <td>{{item.job_description}}</td>
+                </tr>
+                <tr>
+                    <td>Salary</td>
+                    <td>:</td>
+                    <td>{{item.salary}}</td>
+                </tr>
+                <tr>
+                    <td>Number of Position</td>
+                    <td>:</td>
+                    <td>{{item.number_of_position}}</td>
+                </tr>
+                <tr>
+                    <td>Qulification</td>
+                    <td>:</td>
+                    <td>{{item.qulification}}</td>
+                </tr>
+                <tr>
+                    <td>Experience</td>
+                    <td>:</td>
+                    <td>{{item.experience}}</td>
+                </tr>
+                <tr>
+                    <td>Last Apply date</td>
+                    <td>:</td>
+                    <td>{{item.last_apply_data}}</td>
+                </tr>
+
+
+
+            </table>
+            <br>
+            <br>
+            <center><a href="{% url 'institute_application' item.id %}"><button class="apply-btn">Apply</button></a></center>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

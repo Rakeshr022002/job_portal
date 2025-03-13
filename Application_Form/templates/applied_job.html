@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/applied_job.css' %}">
+    <title>Document</title>
+    <style>
+        .overall{
+            padding: 20px;
+        }
+        h1{
+    color: white;
+}
+table{
+    width: 100%;
+    margin-top: 30px;
+    color: white;
+    border: 2px solid white;
+    border-collapse: collapse;
+}
+td,th{
+    border: 2px solid white;
+    height: 40px;
+    text-align: center;
+    font-weight: 600;
+}
+tr td:first-child{
+    width: 20%;
+}
+tr td:nth-child(2){
+    width: 20%;
+}
+tr td:nth-child(3){
+    width: 20%;
+}
+button{
+    height: 30px;
+    width: 70px;
+    border-radius: 5px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+.view-btn{
+background-color: yellow;
+}
+.remove-btn{
+background-color: red;
+color: white;
+}
+input{
+    height: 40px;
+    width: 300px;
+    background: none;
+    outline: none;
+    border-radius: 10px;
+    border: 2px solid white;
+    padding-left: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+}
+.Search-btn{
+    height: 35px;
+    width: 100px;
+    background-color: blueviolet;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+    </style>
+</head>
+<body>
+    <div class="overall">
+        {% if data %}
+        <center><h1>Job Applied Staff Info</h1></center>
+        <form method="POST" >
+            {% csrf_token %}
+            <input type="text" name="jobrole" placeholder="Enter Job Role...">&nbsp;&nbsp;
+            <button type="submit" class="Search-btn">Search</button>
+        </form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Applid Job Role</th>
+                        <th>Experience</th>
+                        <th>View</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>  
+                {% for item in data  %}
+                    <tr>
+                        <td>{{item.fullname}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.job_role}}</td>
+                        <td>{{item.experience |truncatechars:15}}</td>
+                        <td><a href="{% url 'applied_staff' item.id %}"><button class="view-btn">View</button></a></td>
+                        <td><a href="{% url 'delete_applied_staff' item.id %}"><button class="remove-btn">Remove</button></a></td>
+                    </tr>
+                {% endfor %}    
+                </tbody>
+            </table>
+          {% else %}
+            <center><h1>No one Applies</h1></center>
+          {% endif %}
+    </div>
+</body>
+</html>

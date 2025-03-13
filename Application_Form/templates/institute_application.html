@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/institute_application.css' %}">
+    <title>Application Form</title>
+</head>
+
+<body>
+    <div class="overall">
+        <center>
+            <h1>Application Form</h1>
+        </center>
+        <br>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table class="table-1">
+                <tr>
+                    <td>Full Name</td>
+                    <td>:</td>
+                    <td><input type="text" name="fullname" placeholder="Enter Your FullName..." required></td>
+                </tr>
+                <tr>
+                    <td>Email Address</td>
+                    <td>:</td>
+                    <td><input type="email" name="email" placeholder="Enter Email Address..." required></td>
+                </tr>
+                <tr>
+                    <td>Phone Number</td>
+                    <td>:</td>
+                    <td><input type="number" name="phone" placeholder="Enter Your Phone Number..." required></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>:</td>
+                    <td><select name="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="others">others</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Date of Birth</td>
+                    <td>:</td>
+                    <td><input type="date" name="dob" id="Enter Date of Birth..." required></td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>:</td>
+                    <td><textarea name="address" placeholder="Enter Your Address..." required></textarea></td>
+                </tr>
+                <tr>
+                    <td>Education</td>
+                    <td>:</td>
+                    <td><input type="text" name="education" placeholder="Enter Your Education..." required></td>
+                </tr>
+                {% for item in data %}
+                <tr>
+                    <td>Applied job Role</td>
+                    <td>:</td>
+                    <td><input style="border: none;" value="{{item.job_role}}" name="job_role" ></td>
+                </tr>
+                <tr>
+                    <td>Experience</td>
+                    <td>:</td>
+                    <td><textarea name="experience" placeholder="Enter Your Experience" required></textarea></td>
+                </tr>
+                <tr>
+                    <td>Upload Your Resume</td>
+                    <td>:</td>
+                    <td><input type="file" style="border: none;padding-top: 10px;" name="resume" required></td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <div class="term-box">
+            <input type="checkbox" value="{{item.institute_reference_id}}" id="check" class="checkbox" name="ins_refernce" required>
+            <label id="check" style="cursor: pointer;">I agree Terms and Conditions</label>
+        </div>
+            <br>
+            <br>
+            <a href="{% url 'home_page'  %}"><button type="submit">Apply</button></a>
+            {% endfor %}   
+        </form>
+    </div>
+</body>
+
+</html>

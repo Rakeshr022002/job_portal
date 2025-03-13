@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+.overall{
+    min-height: 100vh;
+    background-color: #130f40;
+    background-image: linear-gradient(315deg, #130f40 0%, #000000 74%);
+    padding: 20px;
+}

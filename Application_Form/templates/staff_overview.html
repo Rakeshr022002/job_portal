@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/institute_overview.css' %}">
+    <title>Document</title>
+    <style>
+        .img-box{
+            width: 280px;
+        }
+        .img-box img{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="overall">
+        <a href="/home" style="color: white;">Back</a>
+        <br><br>
+        <div class="display-box">
+        {% for item in data %}
+            <div class="img-box">
+                <img src="{{item.Staff_img.url}}" >
+            </div>
+            <br><br>
+            <center><h2>{{item.name}}</h2></center>
+            <br>
+            <table>
+                <tr>
+                    <td>Email</td>
+                    <td>:</td>
+                    <td><a href="https://mail.google.com" style="color: blue;">{{item.email}}</a></td>
+                </tr>
+                <tr>
+                    <td>Mobile Number</td>
+                    <td>:</td>
+                    <td>{{item.mobile_no}}</td>
+                </tr>
+                <tr>
+                    <td>Date of Birth</td>
+                    <td>:</td>
+                    <td>{{item.date_of_birth}}</td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>:</td>
+                    <td>{{item.gender}}</td>
+                </tr>
+                <tr>
+                    <td>Country</td>
+                    <td>:</td>
+                    <td>{{item.country}}</td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>:</td>
+                    <td>{{item.state}}</td>
+                </tr>
+                <tr>
+                    <td>Education</td>
+                    <td>:</td>
+                    <td>{{item.Education}}</td>
+                </tr>
+                <tr>
+                    <td>Search Job Role</td>
+                    <td>:</td>
+                    <td>{{item.search_role}}</td>
+                </tr>
+                <tr>
+                    <td>Experience</td>
+                    <td>:</td>
+                    <td>{{item.experience}}</td>
+                </tr>
+                <tr>
+                    <td>Remote to Work</td>
+                    <td>:</td>
+                    <td>{{item.remote}}</td>
+                </tr>
+            </table>
+            <br>
+            <br>
+            <center><a href="{% url 'hire_mail' item.id %}"><button class="apply-btn">Hire</button></a></center>
+        {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

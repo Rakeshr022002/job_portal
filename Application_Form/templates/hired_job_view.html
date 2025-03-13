@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/hired_job_view.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="overall">
+        {% if data %}
+        <center><h1>Hiering Institution Details</h1></center>
+        <br>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Institute Name</th>
+                    <th>Email</th>
+                    <th>Job Role</th>
+                    <th>Salary</th>
+                    <th>view</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{item.institute_name}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.hire_role}}</td>
+                    <td>{{item.salary}}</td>
+                    <td><a href="{% url 'hired_job_see' item.id %}"><button class="view-btn">View</button></a></td>
+                    <td><a href="{% url 'hired_job_delete' item.id %}"><button class="remove-btn">Remove</button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <center><h1>No One Hire</h1></center>
+        {% endif %}
+    </div>
+</body>
+</html>

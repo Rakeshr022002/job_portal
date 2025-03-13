@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif
+}
+
+.overall {
+    min-height: 100vh;
+    background-color: #130f40;
+    background-image: linear-gradient(315deg, #130f40 0%, #000000 74%);
+    padding: 20px;
+}
+
+h1 {
+    color: white;
+}
+
+input {
+    height: 40px;
+    width: 250px;
+    border-radius: 5px;
+    background: none;
+    border: 2px solid white;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    padding-left: 10px;
+}
+.search-box{
+    width: 50%;
+    padding-top:20px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.search-btn{
+    height: 40px;
+    width: 100px;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    background: blue;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+table,th,td{
+    color: white;
+    border: 2px solid white;
+    border-collapse:collapse ;
+    text-align: center;
+}
+table{
+    margin-top:20px ;
+    width: 100%;
+}
+tr{
+    height: 50px;
+}
+.btn{
+    height: 35px;
+    width: 100px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+}
+.update{
+    background-color: blue;
+}
+.delete{
+    background-color: red;
+}

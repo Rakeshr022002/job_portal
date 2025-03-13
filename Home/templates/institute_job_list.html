@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/institute_job_list.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="overall">
+     {% if all_job %}
+        <center>
+            <h1>Job List</h1>
+        </center>
+        <form  method="POST">
+            {% csrf_token %}
+        <div class="search-box">
+            <input type="text" placeholder="Search Department..." name="deptname">
+            <input type="text" placeholder="Search Job Role..." name="jobrole">
+            <button class="search-btn" type="submit">Search</button>
+        </div>
+    </form>
+        <table>
+            <thead>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Job Role</th>
+                <th>Salary</th>
+                <th>Number of Position</th>
+                <th>Job Update</th>
+                <th>Job Delete</th>
+            </thead>
+            <tbody>
+                {% for ins in all_job %}
+                <tr>
+                    <td>{{ins.email}}</td>
+                    <td>{{ins.department}}</td>
+                    <td>{{ins.job_role}}</td>
+                    <td>{{ins.salary}}</td>
+                    <td>{{ins.number_of_position}}</td>
+                    <td><a href="{% url 'job_update' ins.id %}"><button class="btn update">Update</button></a></td>
+                    <td><a href="{% url 'job_delete' ins.id %}"><button class="btn delete">Delete</button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+          <center><h1 style="color: white;">First Post Your Job</h1></center>
+       {% endif %} 
+    </div>
+</body>
+
+</html>

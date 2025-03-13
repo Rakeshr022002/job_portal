@@ -1,0 +1,210 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.overall {
+    min-height: 100vh;
+    background-color: #130f40;
+    background-image: linear-gradient(315deg, #130f40 0%, #000000 74%);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+}
+
+nav {
+    height: 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* background-color: red; */
+}
+
+nav a {
+    /* text-decoration: none; */
+    color: white;
+}
+
+form {
+    height: 80vh;
+    width: 100%;
+    border: 2px solid;
+    border-radius: 40px;
+    background-color:rgb(255, 255, 255);
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    /* box-shadow: 0 0 20px blueviolet; */
+}
+
+.user-profile-box {
+    min-height: 100%;
+    width: 20%;
+    border-right: 5px double blueviolet;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    background-image: url(/static/images/default_user.png);
+    background-position: center;
+    background-size: cover;
+    background-position-y: 15px;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: rgba(128, 128, 128, 0.247);
+    border: 2px solid black;
+}
+.user-img img{
+    height: 150px;
+    width: 150px;
+}
+
+.uploadd-btn {
+    display: block;
+    width: 150px;
+    border-radius: 5px;
+    background-color: blueviolet;
+    color: white;
+    padding: 8px;
+    margin: 10px auto;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: sans-serif;
+}
+
+.user-profile-input {
+    display: none;
+}
+
+.user-info-box {
+    min-height: 100%;
+    width: 80%;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    /* border: 2px solid red; */
+}
+
+.box-1 {
+    height: 100%;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    padding: 2px;
+    /* border: 2px solid black; */
+}
+
+.user-info-box label {
+    font-weight: 600;
+}
+
+.user-info-box input {
+    height: 40px;
+    width: 400px;
+    outline: none;
+    border: none;
+    border: 2px solid blueviolet;
+    border-radius: 6px;
+    padding-left: 10px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.gender-box input {
+    height: 18px;
+}
+
+.gender-box {
+    height: 30px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.country-box {
+    height: 80px;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 2px solid black; */
+}
+
+.country-box select {
+    height: 30px;
+    min-width: 100px;
+    background-color: #130f40;
+    background-image: linear-gradient(315deg, #130f40 0%, #000000 74%);
+    color: white;
+    font-weight: 600;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.box-2 {
+    height: 100%;
+    width: 45%;
+    /* border: 2px solid black; */
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    padding: 2px;
+}
+
+textarea {
+    height: 100px;
+    width: 100%;
+    outline: none;
+    border: none;
+    border: 2px solid blueviolet;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    resize: none;
+}
+
+.role-box input {
+    height: 18px;
+}
+
+.role-box {
+    height: 30px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: red; */
+}
+
+.save-btn {
+    height: 40px;
+    width: 150px;
+    border-radius: 5px;
+    background-color: blueviolet;
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 20px;
+}

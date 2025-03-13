@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/staff_register.css' %}">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="overall" >
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+            <center>
+                <h1>Institute Register</h1>
+            </center>
+            <label>Username</label>
+            <input type="text" placeholder="Enter your username..." name="username" value="{{ form.username.value|default:''}}">
+            <p>{{ form.username.errors }}</p>
+            <label>Email Address</label>
+            <input type="email" placeholder="Enter your Email Address..." name="email" value="{{ form.email.value|default:'' }}">
+            <p>{{ form.email.errors }}</p>
+            <label>Password</label>
+            <div class="password-box">
+                <input type="password" placeholder="Enter your Password..." name="password" value="{{ form.password.value|default:'' }}" class="input-border-none" id="password">
+                <img src="{% static 'images/hidden eye.png' %}" class="password-icon" id="passwordicon">
+            </div>
+            <p>{{ form.password.errors }}</p>
+            <label>Confirm password</label>
+                <div class="password-box">
+                    <input type="password" placeholder="Enter your confirmPassword..." name="confirm_password" value="{{ form.confirm_password.value|default:'' }}" class="input-border-none" id="conpassword">
+                    <img src="{% static 'images/hidden eye.png' %}" class="password-icon" id="conpasswordicon">
+                </div>
+                {% for error in form.non_field_errors %}
+                    <p style="color: red;font-weight: 600;">{{error}}</p>
+                {% endfor %}   
+            <center><button type="submit">Register</button></center>
+            <center>
+                <p>Already have account <a href="{% url 'institute_login' %}">Login</a></p>
+            </center>
+        </form>
+        <img src="{% static 'images/institute.png' %}" class="user-img">
+    </div>
+
+    <script src="{% static 'js/Register.js' %}"></script>
+</body>
+
+</html>
